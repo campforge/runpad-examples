@@ -1,0 +1,36 @@
+---
+version: "1.0"
+language: csharp
+targetSdk: latest
+kind: Statements
+packages:
+  "Newtonsoft.Json": latest
+  "RestSharp": latest
+namespaces:
+  - "Newtonsoft.Json"
+  - "Newtonsoft.Json.Linq"
+  - "Newtonsoft.Json.Serialization"
+  - "RestSharp"
+  - "RestSharp.Authenticators"
+---
+
+# RestSharp
+
+```csharp run
+
+
+// without an api key, this will return an error but it will be a valid JSON object
+// and will demonstrate that we can call the service
+
+var client = new RestClient("https://maps.googleapis.com");
+var request = new RestRequest("maps/api/place/nearbysearch/json", Method.GET);
+
+request.AddParameter("location", "40,-100", ParameterType.GetOrPost);
+request.AddParameter("radius", "500", ParameterType.GetOrPost);
+request.AddParameter("types", "food", ParameterType.GetOrPost);
+request.AddParameter("name", "cruise", ParameterType.GetOrPost);
+//request.AddParameter("key", "", ParameterType.GetOrPost);
+
+IRestResponse response = client.Execute(request);
+response?.Content.Dump();
+```

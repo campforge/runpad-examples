@@ -1,2 +1,10 @@
 
 chromedriver.exe
+
+# Local metadata and credentials
+.DS_Store
+._*
+__pycache__/
+*.pyc
+.env
+.env.*

@@ -1,0 +1,82 @@
+---
+version: "1.0"
+language: csharp
+targetSdk: latest
+kind: Program
+packages:
+  "Newtonsoft.Json": latest
+references:
+  - "<RuntimeDirectory>\\SMDiagnostics.dll"
+  - "<RuntimeDirectory>\\System.Configuration.dll"
+  - "<RuntimeDirectory>\\System.Runtime.Serialization.dll"
+  - "<RuntimeDirectory>\\System.Security.dll"
+  - "<RuntimeDirectory>\\System.ServiceModel.Internals.dll"
+namespaces:
+  - "Newtonsoft.Json"
+  - "Newtonsoft.Json.Linq"
+  - "Newtonsoft.Json.Serialization"
+  - "System.Runtime.Serialization.Json"
+  - "System.Security.Cryptography"
+  - "System.Dynamic"
+---
+
+# JSON.NET parsing and dynamic properties
+
+```csharp run
+
+
+void Main()
+{
+	string json = @"{
+		'Email': 'james@example.com',
+		'Active': true,
+		'CreatedDate': '2013-01-20T00:00:00Z',		
+		'Roles': [
+			{ alpha:'blah', beta:'blahblah' },
+			'User',
+			'Admin'
+			]
+	}";
+	
+	Alpha alpha = JsonConvert.DeserializeObject<Alpha>(json);
+	Console.WriteLine(alpha.Roles[0].beta);
+
+	List<string> examples = new List<string>() { "alpha", "beta", "gamma", "delta" };
+	json = JsonConvert.SerializeObject(examples, Newtonsoft.Json.Formatting.Indented);
+
+	List<dynamic> dlist = new List<dynamic>();
+	dynamic d = new ExpandoObject();
+	d.Alpha = "blah";
+	d.Beta = "beta";
+	d.Gamma = "gamma";
+	dlist.Add(d);
+
+	d = new ExpandoObject();
+	d.Alpha = "blah";
+	d.Beta = "beta";
+	d.Gamma = "gamma";
+	dlist.Add(d);
+
+	d = new ExpandoObject();
+	d.Alpha = "blah";
+	d.Beta = "beta";
+	d.Gamma = "gamma";
+	dlist.Add(d);
+
+	d = new ExpandoObject();
+	d.Alpha = "blah";
+	d.Beta = "beta";
+	d.Gamma = "gamma";
+	dlist.Add(d);
+
+	json = JsonConvert.SerializeObject(dlist, Newtonsoft.Json.Formatting.Indented);
+}
+
+public class Alpha
+{
+	public string Email { get; set; }
+	public bool Active { get; set; }
+	public DateTime CreatedDate { get; set; }
+	public List<dynamic> Roles { get; set; }
+}
+```

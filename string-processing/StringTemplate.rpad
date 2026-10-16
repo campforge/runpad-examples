@@ -1,0 +1,15 @@
+---
+version: "1.0"
+language: csharp
+targetSdk: latest
+kind: Statements
+---
+
+# StringTemplate
+
+```csharp run
+
+
+int x = 3;
+$"x: {x}".Dump();
+```

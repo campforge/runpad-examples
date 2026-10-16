@@ -1,0 +1,18 @@
+---
+version: "1.0"
+language: csharp
+targetSdk: latest
+kind: Statements
+---
+
+# string templates$
+
+```csharp run
+
+
+DateTime? x = DateTime.Now;
+$"blah {x:s} blah".Dump();
+x = null;
+$"blah {x:s} blah".Dump();
+// see also "string.Format Test"
+```

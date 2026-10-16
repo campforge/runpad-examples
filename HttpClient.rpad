@@ -1,0 +1,32 @@
+---
+version: "1.0"
+language: csharp
+targetSdk: latest
+kind: Statements
+packages:
+  "Newtonsoft.Json": latest
+  "RestSharp": latest
+  "System.Net.Http": latest
+  "System.Net.Http.Formatting.Extension": latest
+namespaces:
+  - "Newtonsoft.Json"
+  - "Newtonsoft.Json.Linq"
+  - "Newtonsoft.Json.Serialization"
+  - "RestSharp"
+  - "RestSharp.Authenticators"
+  - "System.Net.Http"
+---
+
+# HttpClient
+
+```csharp run
+
+
+// without an api key, this will return an error but it will be a valid JSON object
+// and will demonstrate that we can call the service
+
+HttpClient client = new HttpClient();
+var response = await client.GetAsync("https://maps.googleapis.com/maps/api/place/nearbysearch/json");
+response.StatusCode.Dump();
+await response.Content.ReadAsStringAsync().Dump();
+```
