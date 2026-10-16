@@ -1,0 +1,2 @@
+# Treat RunPad documents as Markdown for highlighting and Git diffs.
+*.rpad linguist-language=Markdown diff=markdown
