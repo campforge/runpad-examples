@@ -43,5 +43,23 @@ python3 tools/import_examples.py
 ```
 
 The original repository is configured as the read-only source remote `upstream`.
-This local repository has no publishing remote until a new destination is configured.
+The publishing remote `origin` is https://github.com/campforge/runpad-examples.
 See [UPSTREAM-README.md](UPSTREAM-README.md) for the upstream README.
+
+## GitHub Markdown preview
+
+The `.rpad` extension is retained. Each generated document ends with an invisible
+Markdown HTML comment:
+
+```html
+<!-- vim: set filetype=markdown: -->
+```
+
+This modeline lets GitHub Linguist detect Markdown from the document itself, including
+when the markup renderer detects language independently of repository attributes.
+`.gitattributes` still provides Markdown highlighting and diff configuration.
+No `.md` mirrors or extra preview pages are generated; executable code is unchanged.
+The modeline is outside the run block and does not affect execution.
+
+Native GitHub preview was verified on AutoMapper.rpad: heading, highlighted code block
+and no visible modeline text. All 177 outputs still pass import and RunPad parser checks.

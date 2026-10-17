@@ -11,3 +11,11 @@
 - 37 examples have dependency/API/header compatibility notes in IMPORT-MANIFEST.json.
 - Script execution, package restore, compilation and external-service access: not performed.
 - No claim that the unchanged examples all execute successfully in RunPad.
+
+## Native GitHub preview
+
+- Added the hidden Markdown modeline after each run block; executable source bytes unchanged.
+- Reproduction and RunPad parser checks passed again: 177/177.
+- Live GitHub AutoMapper.rpad preview: one actual h1 heading, one pre/code block with
+  syntax highlighting, and no visible modeline text. Verified after commit 7166d8c.
+- No generated .md copies, extension changes or code rewrites.
