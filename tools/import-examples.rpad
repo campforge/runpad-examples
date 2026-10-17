@@ -1,0 +1,200 @@
+---
+version: "1.0"
+language: csharp
+targetSdk: latest
+kind: Program
+namespaces:
+  - System.Diagnostics
+  - System.Text
+  - System.Text.Encodings.Web
+  - System.Text.Json
+  - System.Text.Json.Nodes
+  - System.Text.RegularExpressions
+  - System.Security.Cryptography
+  - System.Xml.Linq
+---
+
+# Import upstream examples
+
+Regenerate the 177 imported examples from the pinned upstream Git snapshot. This overwrites converted examples; it does not execute them.
+
+Run this saved file from its Git checkout. Git must be on PATH.
+
+```csharp run
+const string Revision = "a58c50aa6b5c4d650a3428c01c925ef9c792fe3b";
+const string Upstream = "https://github.com/ormico/linqpad-queries";
+static readonly UTF8Encoding Utf8 = new(false, true);
+static readonly JsonSerializerOptions JsonOptions = new()
+{
+    Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
+    WriteIndented = true
+};
+
+public int Main()
+{
+    var verifyOnly = false;
+    try
+    {
+        var root = FindRoot();
+        var files = Utf8.GetString(Git(root, "ls-tree", "-r", "--name-only", "-z", Revision))
+            .Split('\0', StringSplitOptions.RemoveEmptyEntries)
+            .Where(path => path.EndsWith(".linq", StringComparison.Ordinal))
+            .OrderBy(path => path, StringComparer.Ordinal).ToArray();
+        if (files.Length == 0) throw new InvalidDataException("No queries in the pinned upstream tree.");
+        var converted = files.Select(path => ConvertQuery(path, Git(root, "show", Revision + ":" + path))).ToArray();
+        var manifest = new JsonObject
+        {
+            ["upstream_url"] = Upstream, ["upstream_revision"] = Revision, ["count"] = files.Length,
+            ["conversion"] = "Source body bytes preserved; only a required final LF may be appended.",
+            ["execution"] = "Not executed or claimed runnable.",
+            ["files"] = new JsonArray(converted.Select(item => (JsonNode)item.Record).ToArray())
+        };
+        var manifestPath = Path.Combine(root, "IMPORT-MANIFEST.json");
+        var previousManifest = File.Exists(manifestPath) ? JsonNode.Parse(File.ReadAllText(manifestPath, Utf8)) : null;
+        if (verifyOnly)
+        {
+            foreach (var item in converted)
+            {
+                var target = TargetPath(root, item.Target);
+                if (!File.Exists(target) || !File.ReadAllBytes(target).AsSpan().SequenceEqual(item.Bytes))
+                    throw new InvalidDataException("Conversion differs: " + item.Target);
+            }
+            if (!JsonNode.DeepEquals(previousManifest, manifest))
+                throw new InvalidDataException("Import manifest differs from the pinned upstream tree.");
+        }
+        else
+        {
+            // Parse and validate every source before changing any destination.
+            foreach (var item in converted)
+            {
+                var target = TargetPath(root, item.Target);
+                Directory.CreateDirectory(Path.GetDirectoryName(target)!);
+                File.WriteAllBytes(target, item.Bytes);
+            }
+            if (!JsonNode.DeepEquals(previousManifest, manifest))
+                File.WriteAllText(manifestPath, manifest.ToJsonString(JsonOptions) + "\n", Utf8);
+            // Original source remains in the pinned upstream Git history.
+            foreach (var path in files) File.Delete(TargetPath(root, path));
+        }
+        Console.WriteLine($"{(verifyOnly ? "Verified" : "Converted")} {files.Length} examples; source code bytes preserved.");
+        return 0;
+    }
+    catch (Exception error)
+    {
+        Console.Error.WriteLine(error.Message);
+        return 1;
+    }
+}
+
+static string FindRoot()
+{
+    var configured = Environment.GetEnvironmentVariable("RUNPAD_EXAMPLES_ROOT");
+    if (!string.IsNullOrWhiteSpace(configured)) return ValidateRoot(configured);
+    var query = Environment.GetEnvironmentVariable("RUNPAD_CURRENT_QUERY_PATH");
+    var start = string.IsNullOrWhiteSpace(query) ? Environment.CurrentDirectory : Path.GetDirectoryName(query)!;
+    for (var dir = new DirectoryInfo(start); dir != null; dir = dir.Parent)
+        if (File.Exists(Path.Combine(dir.FullName, "IMPORT-MANIFEST.json")) &&
+            (Directory.Exists(Path.Combine(dir.FullName, ".git")) || File.Exists(Path.Combine(dir.FullName, ".git"))))
+            return dir.FullName;
+    throw new DirectoryNotFoundException("Run inside the examples Git checkout, or set RUNPAD_EXAMPLES_ROOT to its path.");
+}
+
+static string ValidateRoot(string path)
+{
+    var root = Path.GetFullPath(path);
+    if (!File.Exists(Path.Combine(root, "IMPORT-MANIFEST.json")) ||
+        !(Directory.Exists(Path.Combine(root, ".git")) || File.Exists(Path.Combine(root, ".git"))))
+        throw new DirectoryNotFoundException("RUNPAD_EXAMPLES_ROOT must point to this examples Git checkout.");
+    return root;
+}
+
+static string TargetPath(string root, string relative)
+{
+    var target = Path.GetFullPath(Path.Combine(root, relative));
+    if (!Path.GetRelativePath(root, target).StartsWith(".." + Path.DirectorySeparatorChar, StringComparison.Ordinal)
+        && Path.GetRelativePath(root, target) != "..") return target;
+    throw new InvalidDataException("Path outside the repository: " + relative);
+}
+
+static byte[] Git(string root, params string[] arguments)
+{
+    var start = new ProcessStartInfo("git")
+    {
+        RedirectStandardOutput = true, RedirectStandardError = true, UseShellExecute = false,
+        CreateNoWindow = true
+    };
+    start.ArgumentList.Add("-C");
+    start.ArgumentList.Add(root);
+    foreach (var argument in arguments) start.ArgumentList.Add(argument);
+    using var process = Process.Start(start) ?? throw new InvalidOperationException("Could not start Git.");
+    // Drain both pipes concurrently. Stdout is binary: line endings and encoding must survive.
+    using var output = new MemoryStream();
+    var copy = process.StandardOutput.BaseStream.CopyToAsync(output);
+    var error = process.StandardError.ReadToEndAsync();
+    Task.WhenAll(copy, error).GetAwaiter().GetResult();
+    process.WaitForExit();
+    if (process.ExitCode != 0) throw new InvalidOperationException("Git failed: " + error.Result.Trim());
+    return output.ToArray();
+}
+
+static (string Target, byte[] Bytes, JsonObject Record) ConvertQuery(string path, byte[] source)
+{
+    var content = source.AsSpan().StartsWith(new byte[] { 0xef, 0xbb, 0xbf }) ? source[3..] : source;
+    var text = Utf8.GetString(content);
+    var match = Regex.Match(text, @"\A\s*(<Query\b[^>]*(?:/>|>[\s\S]*?</Query>))", RegexOptions.CultureInvariant);
+    if (!match.Success) throw new InvalidDataException("Unrecognized Query header: " + path);
+    var header = match.Groups[1].Value;
+    var query = XElement.Parse(header);
+    var queryKind = (string?)query.Attribute("Kind") ?? "";
+    var language = queryKind.StartsWith("VB", StringComparison.Ordinal) ? "vb" : "csharp";
+    var kind = language == "vb" ? queryKind[2..] : queryKind;
+    if (kind is not ("Statements" or "Program" or "Expression"))
+        throw new InvalidDataException("Unsupported query kind in " + path + ": " + queryKind);
+    var code = content[Utf8.GetByteCount(text.AsSpan(0, match.Length))..];
+    var codeText = Utf8.GetString(code);
+    if (Regex.IsMatch(codeText, @"(?m)^`{3,}[ \t]*\r?$"))
+        throw new InvalidDataException("Code contains a run fence delimiter: " + path);
+    var packages = query.Elements("NuGetReference").Select(e => e.Value.Trim()).Where(s => s.Length != 0).ToArray();
+    var references = query.Elements("Reference").Select(e => ((string?)e.Attribute("Relative") ?? e.Value).Trim()).Where(s => s.Length != 0).ToArray();
+    var namespaces = query.Elements("Namespace").Select(e => e.Value.Trim()).Where(s => s.Length != 0).ToArray();
+    string Quote(string value) => JsonSerializer.Serialize(value, new JsonSerializerOptions { Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping });
+    var yaml = new List<string> { "---", "version: \"1.0\"", "language: " + language, "targetSdk: latest", "kind: " + kind };
+    if (packages.Length != 0)
+    {
+        yaml.Add("packages:");
+        yaml.AddRange(packages.Distinct(StringComparer.Ordinal).Select(name => "  " + Quote(name) + ": latest"));
+    }
+    foreach (var (name, values) in new[] { ("references", references), ("namespaces", namespaces) })
+    {
+        if (values.Length == 0) continue;
+        yaml.Add(name + ":");
+        yaml.AddRange(values.Select(value => "  - " + Quote(value)));
+    }
+    yaml.AddRange(new[] { "---", "", "# " + Path.GetFileNameWithoutExtension(path), "", "```" + language + " run", "" });
+    var prefix = Utf8.GetBytes(string.Join("\n", yaml));
+    var addedNewline = code.Length != 0 && code[^1] != (byte)'\n';
+    var suffix = Utf8.GetBytes((addedNewline ? "\n" : "") + "```\n\n<!-- vim: set filetype=markdown: -->\n");
+    var bytes = prefix.Concat(code).Concat(suffix).ToArray();
+    if (!bytes.AsSpan(prefix.Length, code.Length).SequenceEqual(code))
+        throw new InvalidDataException("Source preservation check failed: " + path);
+    var notes = new List<string>();
+    if (references.Length != 0) notes.Add("Original assembly paths/references retained; may be machine-specific.");
+    if (query.Elements().Any(e => e.Name.LocalName is not ("Reference" or "Namespace" or "NuGetReference")))
+        notes.Add("Extra original header fields retained in this manifest, not translated into execution settings.");
+    if (Regex.IsMatch(codeText, @"\b(?:LINQPad|Util|Hyperlinq|DumpContainer)\b"))
+        notes.Add("Uses APIs that may require LINQPad-specific compatibility.");
+    if (packages.Length != 0) notes.Add("Upstream does not pin package versions; latest retains that unpinned intent.");
+    var target = Path.ChangeExtension(path, ".rpad");
+    var record = new JsonObject
+    {
+        ["source"] = path, ["target"] = target, ["language"] = language, ["kind"] = kind,
+        ["source_sha256"] = System.Convert.ToHexString(SHA256.HashData(source)).ToLowerInvariant(),
+        ["code_sha256"] = System.Convert.ToHexString(SHA256.HashData(code)).ToLowerInvariant(),
+        ["code_bytes"] = code.Length, ["added_terminal_newline"] = addedNewline,
+        ["original_query_xml"] = header, ["notes"] = new JsonArray(notes.Select(note => (JsonNode?)JsonValue.Create(note)).ToArray())
+    };
+    return (target, bytes, record);
+}
+```
+
+<!-- vim: set filetype=markdown: -->

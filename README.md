@@ -29,18 +29,24 @@ setting is preserved in the manifest but does not force an old runtime; imports 
 
 ## Reproduce and verify
 
-Python 3.9+ and Git are required; no third-party Python packages.
+RunPad with a .NET 10 SDK and Git are required; no Python or extra NuGet packages.
+Run these saved `.rpad` tools in this Git checkout, using RunPad or its CLI.
 
 ```sh
-python3 tools/import_examples.py --verify
+runpad tools/verify-examples.rpad
 ```
 
 Verification reads original files from the pinned upstream Git commit and checks exact
 reproduction of every converted file and the manifest. To regenerate the import:
 
 ```sh
-python3 tools/import_examples.py
+runpad tools/import-examples.rpad
 ```
+
+Both tools locate the checkout from the saved script path or current directory.
+For another working directory, set `RUNPAD_EXAMPLES_ROOT` to the checkout path.
+The verifier is read-only; the importer regenerates the converted examples.
+Neither tool executes the imported queries.
 
 The original repository is configured as the read-only source remote `upstream`.
 The publishing remote `origin` is https://github.com/campforge/runpad-examples.
