@@ -519,3 +519,5 @@ void WriteFile(string stringBuffer, string fileName)
 	File.WriteAllText(fullFilePath, stringBuffer);
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

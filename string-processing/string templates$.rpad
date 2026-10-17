@@ -16,3 +16,5 @@ x = null;
 $"blah {x:s} blah".Dump();
 // see also "string.Format Test"
 ```
+
+<!-- vim: set filetype=markdown: -->

@@ -61,3 +61,5 @@ await foreach (var message in consumer.Messages())
 	await consumer.Acknowledge(message);
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

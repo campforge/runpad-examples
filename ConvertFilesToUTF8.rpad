@@ -60,3 +60,5 @@ foreach(var pattern in searchPatterns)
 }
 */
 ```
+
+<!-- vim: set filetype=markdown: -->

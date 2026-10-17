@@ -73,3 +73,5 @@ bool SearchPropertyValues(object o, string searchText)
 }
 
 ```
+
+<!-- vim: set filetype=markdown: -->

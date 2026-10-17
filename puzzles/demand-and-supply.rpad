@@ -81,3 +81,5 @@ List<DailyInventory> F(List<DailyInventory> demand, List<DailyInventory> supply)
 	return rc;
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

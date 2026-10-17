@@ -332,3 +332,5 @@ FileStream CreateFile(string fileName)
 	return rc;
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

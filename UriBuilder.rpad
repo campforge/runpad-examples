@@ -29,3 +29,5 @@ Console.WriteLine(urlb.ToString());
 
 Console.WriteLine(urlb.Uri.ToString());
 ```
+
+<!-- vim: set filetype=markdown: -->

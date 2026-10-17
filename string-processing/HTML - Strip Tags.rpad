@@ -46,3 +46,5 @@ public static string StripTagsCharArray(string source)
 	return new string(array, 0, arrayIndex);
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

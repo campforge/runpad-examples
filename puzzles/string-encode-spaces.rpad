@@ -37,3 +37,5 @@ void Main()
 	Console.WriteLine(output);
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

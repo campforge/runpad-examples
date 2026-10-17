@@ -40,3 +40,5 @@ id += "_" + BitConverter.ToString(byteArray).Replace("-", string.Empty);
 
 id.Dump();
 ```
+
+<!-- vim: set filetype=markdown: -->

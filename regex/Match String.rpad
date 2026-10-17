@@ -53,3 +53,5 @@ else
 	Console.WriteLine("no match");
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

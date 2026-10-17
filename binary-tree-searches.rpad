@@ -214,3 +214,5 @@ bool BFS(Node tree, Func<Node, bool> visit)
 	return rc;
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

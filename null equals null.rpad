@@ -16,3 +16,5 @@ string b = null;
 // in c# null == null aparently
 string.Equals(a, b).Dump();
 ```
+
+<!-- vim: set filetype=markdown: -->

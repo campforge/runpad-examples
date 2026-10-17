@@ -115,3 +115,5 @@ class O1
 	public DateTime EffectiveEndDate { get; set; }
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

@@ -59,3 +59,5 @@ bool F(DateTime a, DateTime b, float Days)
 	return rc;
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

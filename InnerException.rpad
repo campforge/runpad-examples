@@ -44,3 +44,5 @@ void Do()
 	throw ex;
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

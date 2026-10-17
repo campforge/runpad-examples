@@ -274,3 +274,5 @@ void DFS(string folder, Action<string> visit)
 }
 
 ```
+
+<!-- vim: set filetype=markdown: -->

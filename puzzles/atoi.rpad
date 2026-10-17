@@ -181,3 +181,5 @@ int char2int(char c)
 	return c - '0';
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

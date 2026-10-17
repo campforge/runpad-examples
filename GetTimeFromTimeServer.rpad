@@ -43,3 +43,5 @@ public static DateTime GetNetworkTime(string ntpServer = "pool.ntp.org")
 	return networkDateTime;
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

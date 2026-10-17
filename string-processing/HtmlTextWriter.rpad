@@ -75,3 +75,5 @@ void ToHtml(HtmlTextWriter Writer, bool BodyOnly)
   }
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

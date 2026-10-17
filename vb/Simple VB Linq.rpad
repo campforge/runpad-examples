@@ -23,3 +23,5 @@ Dim x = From a in l
 
 x.Dump()
 ```
+
+<!-- vim: set filetype=markdown: -->

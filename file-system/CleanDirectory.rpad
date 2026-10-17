@@ -58,3 +58,5 @@ public bool IsDirectoryEmpty(string path)
     return !Directory.EnumerateFileSystemEntries(path).Any();
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

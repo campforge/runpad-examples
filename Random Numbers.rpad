@@ -41,3 +41,5 @@ decimal sampled = rng.NextDecimal();
 byte[] byteArray = rng.NextBytes(8);
 BitConverter.ToString(byteArray).Replace("-", string.Empty).Dump();
 ```
+
+<!-- vim: set filetype=markdown: -->

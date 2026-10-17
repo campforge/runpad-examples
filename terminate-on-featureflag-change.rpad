@@ -202,3 +202,5 @@ class FeatureFlagProperties
 	public double IntervalSecondsBeforeForcedExit { get; set; }
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

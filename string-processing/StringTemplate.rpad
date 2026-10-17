@@ -13,3 +13,5 @@ kind: Statements
 int x = 3;
 $"x: {x}".Dump();
 ```
+
+<!-- vim: set filetype=markdown: -->

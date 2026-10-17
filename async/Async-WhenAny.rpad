@@ -132,3 +132,5 @@ private static async Task<string> FirstRespondingUrlAsync(string urlA, string ur
 }
 */
 ```
+
+<!-- vim: set filetype=markdown: -->

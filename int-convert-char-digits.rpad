@@ -30,3 +30,5 @@ int F(char c)
 	return c - '1' + 1;
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

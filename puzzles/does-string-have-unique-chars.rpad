@@ -71,3 +71,5 @@ bool IsUnique2(string s)
 	return s.Length == set.Count;
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

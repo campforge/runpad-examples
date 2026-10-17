@@ -74,3 +74,5 @@ string FormatLargeNumber(decimal n)
 	return rc;
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

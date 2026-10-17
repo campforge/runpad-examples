@@ -174,3 +174,5 @@ void BFS(Node tree, Action<Node> visit)
 	}
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

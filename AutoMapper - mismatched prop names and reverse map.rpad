@@ -67,3 +67,5 @@ class AutomapperLogicProfile : Profile
 }
 */
 ```
+
+<!-- vim: set filetype=markdown: -->

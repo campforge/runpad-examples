@@ -155,3 +155,5 @@ y.ReplaceWith(XElement.Parse("<Replacement />"));
 Console.WriteLine("----------------------------=========================----------------------------");
 Console.WriteLine(xdoc);
 ```
+
+<!-- vim: set filetype=markdown: -->

@@ -164,3 +164,5 @@ void TestInteger(Stopwatch watch, int n)
 	Console.WriteLine($"2) {rc} elapsed time = {watch.Elapsed}");
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

@@ -45,3 +45,5 @@ static void WorkMethod(object stateInfo)
    ((AutoResetEvent)stateInfo).Set();
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

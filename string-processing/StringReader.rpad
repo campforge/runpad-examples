@@ -25,3 +25,5 @@ using(StringReader sr = new StringReader(data))
 	}
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

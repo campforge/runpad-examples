@@ -20,3 +20,5 @@ BigInteger.ModPow(i,0,97).Dump();
 //why would you need this?
 //see https://www.bankersonline.com/regulations/12-1003-appc
 ```
+
+<!-- vim: set filetype=markdown: -->

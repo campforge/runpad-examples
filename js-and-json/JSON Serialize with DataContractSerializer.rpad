@@ -83,3 +83,5 @@ public class Beta
 	public string Name {get; set;}
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

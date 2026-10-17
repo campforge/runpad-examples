@@ -175,3 +175,5 @@ void LeafNodes(Node root, Action<Node> visit)
 	}
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

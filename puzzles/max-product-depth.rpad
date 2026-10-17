@@ -90,3 +90,5 @@ void dfs(Product p, int depth = 1)
 }
 
 ```
+
+<!-- vim: set filetype=markdown: -->

@@ -49,3 +49,5 @@ foreach(var e in getElements)
 	Console.WriteLine(e);
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

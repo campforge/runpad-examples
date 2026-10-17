@@ -58,3 +58,5 @@ class Betty : Bob, IBeta
 	// Bob.B() can implement IBeta even though it is in Bob base class
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

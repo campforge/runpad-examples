@@ -79,3 +79,5 @@ public string zigZag(string input, int n)
 }
 
 ```
+
+<!-- vim: set filetype=markdown: -->

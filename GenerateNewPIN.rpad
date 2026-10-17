@@ -50,3 +50,5 @@ int GetRand(int max)
 	return rc;
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

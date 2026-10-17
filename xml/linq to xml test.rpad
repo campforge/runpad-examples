@@ -30,3 +30,5 @@ foreach(var k in keys.Elements("Key"))
 	k.Value.Dump();
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

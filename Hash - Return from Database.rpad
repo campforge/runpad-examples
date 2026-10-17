@@ -51,3 +51,5 @@ class Alpha
 	public byte[] HASH {get; set;}
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

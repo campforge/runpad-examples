@@ -58,3 +58,5 @@ string g = r.Replace(f, replStr);
 f.Dump();
 g.Dump();
 ```
+
+<!-- vim: set filetype=markdown: -->

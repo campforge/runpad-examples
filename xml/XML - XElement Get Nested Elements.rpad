@@ -29,3 +29,5 @@ public XElement GetElement(XElement parent, params string[] args)
 	return rc;
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

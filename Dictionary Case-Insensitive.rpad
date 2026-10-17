@@ -20,3 +20,5 @@ if(dict.Keys.Contains("Alpha"))
 
 dict.Dump();
 ```
+
+<!-- vim: set filetype=markdown: -->

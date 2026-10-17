@@ -91,3 +91,5 @@ class Fibonacci
 	}
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

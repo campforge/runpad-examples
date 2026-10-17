@@ -120,3 +120,5 @@ IList<IList<Interval>> GetExample1()
 	return rc;
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

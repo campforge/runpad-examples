@@ -66,3 +66,5 @@ public class Beanbag: Chair
 	public double PercentFull { get; set; }
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

@@ -150,3 +150,5 @@ void GetAllCombinations(string[] data, HashSet<char> parent, int startIndex, Lis
 	}
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

@@ -110,3 +110,5 @@ public class ShouldSerializeContractResolver : DefaultContractResolver
 	*/
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

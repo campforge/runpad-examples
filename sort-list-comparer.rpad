@@ -45,3 +45,5 @@ public class MyData
 	public int Beta { get; set; }
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

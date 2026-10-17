@@ -44,3 +44,5 @@ foreach (var i in guids)
 
 
 ```
+
+<!-- vim: set filetype=markdown: -->

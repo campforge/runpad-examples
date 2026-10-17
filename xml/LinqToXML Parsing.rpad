@@ -66,3 +66,5 @@ foreach(var l in xdoc.Elements().Elements())
 	Console.WriteLine();
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

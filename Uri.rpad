@@ -37,3 +37,5 @@ a.ToString().Dump();
 UriBuilder c = new UriBuilder("http://Bing.com");
 c.Host.Dump();
 ```
+
+<!-- vim: set filetype=markdown: -->

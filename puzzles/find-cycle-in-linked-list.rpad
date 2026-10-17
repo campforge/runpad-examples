@@ -98,3 +98,5 @@ Node GetList()
 	return rc;
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

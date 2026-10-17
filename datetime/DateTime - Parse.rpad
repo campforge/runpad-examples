@@ -76,3 +76,5 @@ void MyParse(string str)
 	MyParse(str, formats);
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

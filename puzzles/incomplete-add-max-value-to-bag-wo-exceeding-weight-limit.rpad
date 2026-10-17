@@ -54,3 +54,5 @@ int[] Solve(int[] values, int[] weights, int bagCapacity)
 }
 
 ```
+
+<!-- vim: set filetype=markdown: -->

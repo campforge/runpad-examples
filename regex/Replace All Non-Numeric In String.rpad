@@ -15,3 +15,5 @@ string example = "(478) 714-5555";
 string rc = r.Replace(example, string.Empty);
 rc.Dump();
 ```
+
+<!-- vim: set filetype=markdown: -->

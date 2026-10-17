@@ -68,3 +68,5 @@ void Solve(int[] values, int[] weights, int bagCapacity, Bag bag, int start)
 	}
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

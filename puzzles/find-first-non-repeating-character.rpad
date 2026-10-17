@@ -45,3 +45,5 @@ char? findFirstNonRepeating(string s)
 }
 
 ```
+
+<!-- vim: set filetype=markdown: -->

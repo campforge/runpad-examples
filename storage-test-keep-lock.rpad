@@ -121,3 +121,5 @@ public class AzureMutex: IDisposable
 	}
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

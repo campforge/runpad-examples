@@ -30,3 +30,5 @@ if(rc.HasValue)
 else
 	Console.WriteLine("No char repeats");
 ```
+
+<!-- vim: set filetype=markdown: -->

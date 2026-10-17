@@ -56,3 +56,5 @@ async Task<Guid> Foo(Guid key, int seconds, string s)
 	return key;
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

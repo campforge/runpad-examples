@@ -112,3 +112,5 @@ int IncIndex(int[] indexes, int i, int size)
 
 
 ```
+
+<!-- vim: set filetype=markdown: -->

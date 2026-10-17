@@ -30,3 +30,5 @@ List<int> list2 = new List<int>()
 // I think the .ToArray() is for performance
 Console.WriteLine(string.Join(",", list2.ToArray()));
 ```
+
+<!-- vim: set filetype=markdown: -->

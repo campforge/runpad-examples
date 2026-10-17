@@ -52,3 +52,5 @@ Console.WriteLine();
 
 Console.WriteLine("Decrypted Message: \"{0}\"", Encoding.ASCII.GetString(decrypted));
 ```
+
+<!-- vim: set filetype=markdown: -->

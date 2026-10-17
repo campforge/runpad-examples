@@ -45,3 +45,5 @@ public int[] TwoSum(int[] nums, int target)
 	return rc;
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

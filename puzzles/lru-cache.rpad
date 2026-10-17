@@ -88,3 +88,5 @@ public class LRUCache
 	}
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

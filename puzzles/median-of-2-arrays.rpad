@@ -80,3 +80,5 @@ int[] MergeArrays(int[] nums1, int[] nums2)
 	return rc;
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

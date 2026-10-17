@@ -19,3 +19,5 @@ list.RemoveAll(i => i.Contains("alp"));
 
 list.Dump();
 ```
+
+<!-- vim: set filetype=markdown: -->

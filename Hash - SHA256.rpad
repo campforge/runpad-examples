@@ -63,3 +63,5 @@ class Alpha
 	public double value {get; set;}
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

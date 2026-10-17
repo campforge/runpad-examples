@@ -92,3 +92,5 @@ public void ParseFullName(string FullName, out string FirstName, out string Last
   }
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

@@ -30,3 +30,5 @@ var response = await client.GetAsync("https://maps.googleapis.com/maps/api/place
 response.StatusCode.Dump();
 await response.Content.ReadAsStringAsync().Dump();
 ```
+
+<!-- vim: set filetype=markdown: -->

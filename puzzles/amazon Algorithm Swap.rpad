@@ -77,3 +77,5 @@ long howManySwaps(List<int> arr)
 	return rc;
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

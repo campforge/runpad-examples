@@ -70,3 +70,5 @@ class MyClass
 	public double Zeta { get; set; }
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

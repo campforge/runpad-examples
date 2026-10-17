@@ -57,3 +57,5 @@ static void GetComb(int[] arr, int colindex, List<int> c)
 	}
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

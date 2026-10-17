@@ -21,3 +21,5 @@ r.IsMatch(x).Dump();
 
 
 ```
+
+<!-- vim: set filetype=markdown: -->

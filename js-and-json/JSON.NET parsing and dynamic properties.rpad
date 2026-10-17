@@ -80,3 +80,5 @@ public class Alpha
 	public List<dynamic> Roles { get; set; }
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

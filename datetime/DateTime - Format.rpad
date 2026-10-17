@@ -51,3 +51,5 @@ DateTimeOffset.Now.Add(TimeSpan.FromMinutes(20.0)).Dump();
 
 Console.WriteLine(DateTime.Now.ToString("MMM-yyyy"));
 ```
+
+<!-- vim: set filetype=markdown: -->

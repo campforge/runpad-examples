@@ -98,3 +98,5 @@ class CryptographicGuidGenerator
 	}
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

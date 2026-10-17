@@ -98,3 +98,5 @@ public class SecureConfigData
 	public DateTime Updated { get; set; }
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

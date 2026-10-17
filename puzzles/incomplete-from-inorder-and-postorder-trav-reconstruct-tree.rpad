@@ -88,3 +88,5 @@ void inorder(TreeNode n, Action<TreeNode> f)
 	dfs(n.right, f);
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

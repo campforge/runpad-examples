@@ -45,3 +45,5 @@ static string BytesToHexString(byte[] bytes)
 	return hexString.ToString();
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

@@ -238,3 +238,5 @@ static class ListNodeUtil
 	}
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

@@ -34,3 +34,5 @@ request.AddParameter("name", "cruise", ParameterType.GetOrPost);
 IRestResponse response = client.Execute(request);
 response?.Content.Dump();
 ```
+
+<!-- vim: set filetype=markdown: -->

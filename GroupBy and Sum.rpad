@@ -45,3 +45,5 @@ public class X
 	public int Val {get;set;}
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

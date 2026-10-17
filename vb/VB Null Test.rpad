@@ -46,3 +46,5 @@ if not c is nothing then
 	Console.WriteLine("c is not nothing")
 end if
 ```
+
+<!-- vim: set filetype=markdown: -->

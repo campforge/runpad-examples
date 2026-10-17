@@ -93,3 +93,5 @@ public static class Prompt
     }
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

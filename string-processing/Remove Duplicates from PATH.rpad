@@ -23,3 +23,5 @@ void Main()
 	Console.WriteLine("path.Length = {0} newPath.Length = {1}", path.Length, newPath.Length);
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

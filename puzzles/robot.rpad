@@ -65,3 +65,5 @@ public static string doesCircleExist(string c)
 }
 
 ```
+
+<!-- vim: set filetype=markdown: -->

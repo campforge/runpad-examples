@@ -81,3 +81,5 @@ string zigZag(int numRows, string str)
 	return rc.ToString();
 }
 ```
+
+<!-- vim: set filetype=markdown: -->

@@ -45,7 +45,7 @@ def convert(path, source):
     title = Path(path).stem
     prefix = ('\n'.join(yaml + ['---', '', '# ' + title, '', '```' + language + ' run', ''])).encode('utf-8')
     added_newline = bool(code) and not code.endswith(b'\n')
-    output = prefix + code + (b'\n' if added_newline else b'') + b'```\n'
+    output = prefix + code + (b'\n' if added_newline else b'') + b'```\n\n<!-- vim: set filetype=markdown: -->\n'
     notes = []
     if references:
         notes.append('Original assembly paths/references retained; may be machine-specific.')

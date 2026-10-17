@@ -79,3 +79,5 @@ void DFS(Node root, Action<Node> visit)
 	DFS(root.Right, visit);
 }
 ```
+
+<!-- vim: set filetype=markdown: -->
